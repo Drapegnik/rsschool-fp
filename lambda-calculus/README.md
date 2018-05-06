@@ -1,8 +1,9 @@
 # lambda-calculus
 
-Implement following modules:
+Implement following modules & functions:
+> `*` Write the function in the point-free form
 
-## Base
+## [Base](https://github.com/Drapegnik/rsschool-fp/blob/master/lambda-calculus/src/Base.hs)
 
 * [x] `identity`
 * [x] `constant`
@@ -10,7 +11,7 @@ Implement following modules:
 * [x] `compose`
 * [x] `flip`
 
-## ChurchNum
+## [ChurchNum](https://github.com/Drapegnik/rsschool-fp/blob/master/lambda-calculus/src/ChurchNum.hs)
 Implement dec/pred as described [here](https://en.wikipedia.org/wiki/Church_encoding)
 
 * [x] `zero`*
@@ -29,7 +30,7 @@ Implement dec/pred as described [here](https://en.wikipedia.org/wiki/Church_enco
 
 * [x] `isZero`
 
-## ChurchBool
+## [ChurchBool](https://github.com/Drapegnik/rsschool-fp/blob/master/lambda-calculus/src/ChurchBool.hs)
 * [x] `true`
 * [x] `false`
 * [x] `cond (if)`
@@ -41,12 +42,10 @@ Implement dec/pred as described [here](https://en.wikipedia.org/wiki/Church_enco
 
 * [x] `toChurchNum`
 
-## Tuple
+## [Tuple](https://github.com/Drapegnik/rsschool-fp/blob/master/lambda-calculus/src/Tuple.hs)
 * [x] `tuple`
 * [ ] `first`*
 * [x] `second`
 * [x] `swap`
 * [ ] `curry`*
 * [x] `uncurry`
-
-> `*` Write the function in the point-free form
