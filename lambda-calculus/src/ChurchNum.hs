@@ -23,6 +23,12 @@ two = (.) <*> id
 inc :: ((a -> b) -> c -> a) -> (a -> b) -> c -> b
 inc n f x = f (n f x)
 
+dec n f x = extract $ n inc' const'
+    where 
+        inc'    g h = h $ g f
+        const'  _   = x
+        extract v   = v id
+
 unchurch :: (Num a, Num b) => ((a -> a) -> b -> c) -> c
 unchurch n = n (+1) 0
 

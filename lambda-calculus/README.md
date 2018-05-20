@@ -18,7 +18,7 @@ Implement dec/pred as described [here](https://en.wikipedia.org/wiki/Church_enco
 * [x] `one`*
 * [x] `two`*
 * [ ] `inc`*
-* [ ] `dec`
+* [x] `dec`
 * [x] `add`
 * [ ] `sub`
 * [x] `mul`*
