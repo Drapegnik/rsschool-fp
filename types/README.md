@@ -21,12 +21,12 @@ Implement following modules & functions:
 * [x] `foldl`
 * [x] `foldr`
 * [x] `prepend`
+* [x] `head`
+* [x] `tail`
 
-
-* [ ] `zeroTo` - (e.g. `zeroTo 5 = [0, 1, 2, 3, 4, 5]`)
-* [ ] `range` - (e.g. `range 2 7 =  [2, 3, 4, 5, 6, 7]`)
-* [ ] `repeat` - (e.g. `repeat 3 9 = [9, 9, 9]`)
-* [ ] `concatMap` (`:: (a -> List b) -> List a -> List b`)
+* [x] `zeroTo` - (e.g. `zeroTo 5 = [0, 1, 2, 3, 4, 5]`)
+* [x] `range` - (e.g. `range 2 7 =  [2, 3, 4, 5, 6, 7]`)
+* [x] `repeat` - (e.g. `repeat 3 9 = [9, 9, 9]`)
 
 ### with `foldl` / `foldr`
 * [x] `append`
@@ -36,7 +36,8 @@ Implement following modules & functions:
 * [x] `reverse`
 * [x] `map`
 * [x] `filter`
-* [ ] `concat`
+* [x] `concat`
+* [x] `concatMap` (`:: (a -> List b) -> List a -> List b`)
 
 ## [Bool](https://github.com/Drapegnik/rsschool-fp/blob/master/types/src/Bool.hs)
 * [x] `Bool` data type definition (`True` and `False`)

@@ -2,9 +2,10 @@
 
 module List where
 
-import Prelude (Int, Show, (+))
+import Prelude (Int, Show, (+), (-), (==))
 import Base (const, flip, (.), ($))
 import Bool (Bool, if')
+import Maybe (Maybe (Nothing, Just))
 
 data List a
     = Empty -- NILL
@@ -51,5 +52,28 @@ map f = foldr (prepend . f) Empty
 filter :: (a -> Bool) -> List a -> List a
 filter f = foldr (\x acc -> if' (f x) (Cons x acc) acc) Empty
 
+zeroTo :: Int -> List Int
+zeroTo 0 = Cons 0 Empty
+zeroTo n = append n $ zeroTo (n - 1)
 
-    
+range :: Int -> Int -> List Int
+range f t = if (f == t) then Cons f Empty else prepend f $ range (f + 1) t
+
+repeat :: Int -> a -> List a
+repeat 0 x = Cons x Empty
+repeat n x = prepend x $ repeat (n - 1) x
+
+concat :: List a -> List a -> List a
+concat listA listB = foldr prepend listB listA
+
+--- ??
+concatMap :: (a -> List b) -> List a -> List b
+concatMap f list = foldl (\acc item -> concat acc (f item)) Empty list
+
+head :: List a -> Maybe a
+head Empty = Nothing
+head (Cons h _) = Just h
+
+tail :: List a -> Maybe (List a)
+tail :: Empty = Nothing
+tail (Cons _ t) = Just t
