@@ -45,3 +45,5 @@ Implement following modules & functions:
 
 ## [MaybeMaybe](https://github.com/Drapegnik/rsschool-fp/blob/master/types/src/MaybeMaybe.hs)
 * [x] `Maybe` type definition
+* [x] `fmap`
+* [x] `maybe`
