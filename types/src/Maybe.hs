@@ -1,17 +1,19 @@
 {-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE InstanceSigs #-}
 
 module Maybe where
 
-import Prelude (Show)
+import Prelude (Show, Functor(fmap))
 
 data Maybe a
     = Nothing
     | Just a
     deriving (Show)
 
-fmap :: (a -> b) -> Maybe a -> Maybe b
-fmap _ Nothing = Nothing
-fmap f (Just x) = Just (f x)
+instance Functor Maybe where
+    fmap :: (a -> b) -> Maybe a -> Maybe b
+    fmap _ Nothing = Nothing
+    fmap f (Just x) = Just (f x)
 
 maybe :: b -> (a -> b) -> Maybe a -> b
 maybe fallback f mA = 

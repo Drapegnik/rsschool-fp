@@ -2,7 +2,7 @@
 
 module List where
 
-import Prelude (Int, Show, (+), (-), (==))
+import Prelude (Int, Show(show), Functor(fmap), (+), (-), (++), (==))
 import Base (const, flip, (.), ($))
 import Bool (Bool, if')
 import Maybe (Maybe (Nothing, Just))
@@ -10,7 +10,15 @@ import Maybe (Maybe (Nothing, Just))
 data List a
     = Empty -- NILL
     | Cons a (List a)
-    deriving (Show)
+
+instance (Show a) => Show (List a) where
+    show list = "[" ++ print(list) ++ "]"
+        where
+            print (Cons h Empty) = show h
+            print (Cons h t) = show h ++ ", " ++ print(t)
+
+instance Functor List where
+    fmap = map
 
 l3 :: List Int
 l3 = Cons 2 (Cons 5 (Cons 9 Empty)) -- Cons = (:)
@@ -75,5 +83,5 @@ head Empty = Nothing
 head (Cons h _) = Just h
 
 tail :: List a -> Maybe (List a)
-tail :: Empty = Nothing
+tail Empty = Nothing
 tail (Cons _ t) = Just t
