@@ -20,8 +20,12 @@ one = ($)
 two :: (a -> a) -> a -> a
 two = (.) <*> id
 
+-- inc n f x = f (n f x)
+-- inc n f = (.) (($) flip const n f) $ n f
+-- inc n f = ($) flip const n f . n f
 inc :: ((a -> b) -> c -> a) -> (a -> b) -> c -> b
-inc n f x = f (n f x)
+inc n f = f . n f
+
 
 dec n f x = extract $ n inc' const'
   where

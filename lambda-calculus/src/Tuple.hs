@@ -6,16 +6,18 @@ module Tuple where
 tuple a b f = f a b
 
 -- fst
-first t = t const
+first = uncurry' const
 
 -- snd
 second t = t $ flip const
 
 swap t = t $ flip tuple
 
--- uncurry' = flip apply
--- uncurry' = flip ($)
-uncurry' f t = t f
+-- uncurry' f t = t f
+-- unchurch $ uncurry' add $ pair -> 8
+uncurry' = flip ($)
 
--- curry' f a b  = f $ tuple a b
-curry' f a = f . tuple a
+-- curry' f a b = f $ tuple a b
+-- curry' f a = f . tuple a
+-- curry' f = (.) f . tuple
+curry' = (. tuple) . (.)

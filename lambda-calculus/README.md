@@ -37,15 +37,15 @@ Implement dec/pred as described [here](https://en.wikipedia.org/wiki/Church_enco
 * [x] `and`
 * [x] `or`
 * [x] `not`
-* [ ] `xor`
+* [x] `xor`
 
 
 * [x] `toChurchNum`
 
 ## [Tuple](https://github.com/Drapegnik/rsschool-fp/blob/master/lambda-calculus/src/Tuple.hs)
 * [x] `tuple`
-* [ ] `first`*
+* [x] `first`*
 * [x] `second`
 * [x] `swap`
-* [ ] `curry`*
-* [x] `uncurry`
+* [x] `curry`*
+* [x] `uncurry`*
