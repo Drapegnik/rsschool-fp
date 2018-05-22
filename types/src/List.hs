@@ -2,28 +2,29 @@
 
 module List where
 
-import Prelude (Int, Show(show), Functor(fmap), (+), (-), (++), (==))
-import Base (const, flip, (.), ($))
+import Base (($), (.), const, flip)
 import Bool (Bool, if')
-import Maybe (Maybe (Nothing, Just))
+import Maybe (Maybe(Just, Nothing))
+import Prelude (Functor(fmap), Int, Show(show), (+), (++), (-), (==))
 
 data List a
-    = Empty -- NILL
-    | Cons a (List a)
+  = Empty -- NILL
+  | Cons a
+         (List a)
 
 instance (Show a) => Show (List a) where
-    show list = "[" ++ print(list) ++ "]"
-        where
-            print (Cons h Empty) = show h
-            print (Cons h t) = show h ++ ", " ++ print(t)
+  show list = "[" ++ print (list) ++ "]"
+    where
+      print (Cons h Empty) = show h
+      print (Cons h t) = show h ++ ", " ++ print (t)
 
 instance Functor List where
-    fmap = map
+  fmap = map
 
 l3 :: List Int
 l3 = Cons 2 (Cons 5 (Cons 9 Empty)) -- Cons = (:)
--- l3 = 2 : 5 : 9 : Empty
 
+-- l3 = 2 : 5 : 9 : Empty
 foldl :: (b -> a -> b) -> b -> List a -> b
 foldl _ acc Empty = acc
 foldl f acc (Cons h t) = foldl f (f acc h) t
@@ -65,7 +66,10 @@ zeroTo 0 = Cons 0 Empty
 zeroTo n = append n $ zeroTo (n - 1)
 
 range :: Int -> Int -> List Int
-range f t = if (f == t) then Cons f Empty else prepend f $ range (f + 1) t
+range f t =
+  if (f == t)
+    then Cons f Empty
+    else prepend f $ range (f + 1) t
 
 repeat :: Int -> a -> List a
 repeat 0 x = Cons x Empty

@@ -2,19 +2,20 @@
 
 module Main where
 
-import Prelude (IO, String, Int, Show(show), (++), pure)
+import Prelude (IO, Int, Show(show), String, (++), pure)
 
 data Month
-    = December
-    | Junuary
-    | February
-    | May
-    deriving (Show)
+  = December
+  | Junuary
+  | February
+  | May
+  deriving (Show)
 
 data DisplayedDate
-    = Now
-    | DaysAgo Int
-    | Date Month Int
+  = Now
+  | DaysAgo Int
+  | Date Month
+         Int
 
 -- formatDate Now -> "now"
 -- formatDate $ DaysAgo 0 -> "today"

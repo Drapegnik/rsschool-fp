@@ -20,5 +20,5 @@ flip' :: (a -> b -> c) -> b -> a -> c
 flip' f x y = f y x
 
 -- (<*>) - S combinator
-s :: (a -> b -> c)  -> (a -> b) -> a -> c
+s :: (a -> b -> c) -> (a -> b) -> a -> c
 s f g x = f x $ g x

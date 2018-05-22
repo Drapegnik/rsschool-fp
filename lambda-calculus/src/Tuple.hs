@@ -18,4 +18,4 @@ swap t = t $ flip tuple
 uncurry' f t = t f
 
 -- curry' f a b  = f $ tuple a b
-curry' f a  = f . tuple a
+curry' f a = f . tuple a
