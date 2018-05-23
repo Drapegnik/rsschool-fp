@@ -30,8 +30,8 @@ Implement following modules & functions:
 
 ### with `foldl` / `foldr`
 * [x] `append`
-* [ ] `sum`
-* [ ] `product`
+* [x] `sum`
+* [x] `product`
 * [x] `length`
 * [x] `reverse`
 * [x] `map`

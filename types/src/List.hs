@@ -5,7 +5,7 @@ module List where
 import Base (($), (.), const, flip)
 import Bool (Bool, if')
 import Maybe (Maybe(Just, Nothing))
-import Prelude (Functor(fmap), Int, Show(show), (+), (++), (-), (==))
+import Prelude (Functor(fmap), Int, Show(show), (+), (*), (++), (-), (==))
 
 data List a
   = Empty -- NILL
@@ -13,10 +13,10 @@ data List a
          (List a)
 
 instance (Show a) => Show (List a) where
-  show list = "[" ++ print (list) ++ "]"
+  show list = "[" ++ print list ++ "]"
     where
       print (Cons h Empty) = show h
-      print (Cons h t) = show h ++ ", " ++ print (t)
+      print (Cons h t) = show h ++ ", " ++ print t
 
 instance Functor List where
   fmap = map
@@ -32,6 +32,10 @@ foldl f acc (Cons h t) = foldl f (f acc h) t
 -- sum l3 -> 16
 sum :: List Int -> Int
 sum = foldl (+) 0
+
+-- product l3 -> 90
+product :: List Int -> Int
+product = foldl (*) 1
 
 foldr :: (a -> b -> b) -> b -> List a -> b
 foldr _ acc Empty = acc
