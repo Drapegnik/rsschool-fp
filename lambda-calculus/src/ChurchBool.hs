@@ -17,7 +17,7 @@ and' a b = a b false
 
 or' a b = a true b
 
-xor' a b = a (b false true) (b true false)
+xor' a b = a (not b) b
 
 not' a = a false true
 
