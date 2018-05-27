@@ -2,10 +2,14 @@
 
 module List where
 
+import Prelude (Functor(fmap), Foldable(foldr, foldl), Int, Show(show), (+), (*), (++), (-), (==))
+import Data.Semigroup (Semigroup((<>)))
+import Data.Monoid (Monoid(mempty))
+
 import Base (($), (.), const, flip)
 import Bool (Bool, if')
 import Maybe (Maybe(Just, Nothing))
-import Prelude (Functor(fmap), Int, Show(show), (+), (*), (++), (-), (==))
+
 
 data List a
   = Empty -- NILL
@@ -15,19 +19,35 @@ data List a
 instance (Show a) => Show (List a) where
   show list = "[" ++ print list ++ "]"
     where
+      print Empty = ""
       print (Cons h Empty) = show h
       print (Cons h t) = show h ++ ", " ++ print t
+
+instance Foldable List where
+  -- foldr :: (a -> b -> b) -> b -> List a -> b
+  foldr _ acc Empty = acc
+  foldr f acc (Cons h t) = f h (foldr f acc t)
 
 instance Functor List where
   fmap = map
 
-l3 :: List Int
-l3 = Cons 2 (Cons 5 (Cons 9 Empty)) -- Cons = (:)
+instance Semigroup (List a) where
+  (<>) = concat
 
--- l3 = 2 : 5 : 9 : Empty
-foldl :: (b -> a -> b) -> b -> List a -> b
-foldl _ acc Empty = acc
-foldl f acc (Cons h t) = foldl f (f acc h) t
+instance Monoid (List a) where
+  mempty = Empty
+
+infixr 5 % -- ??
+
+(%) :: a -> List a -> List a
+(%) = Cons -- = (:)
+
+l3 :: List Int
+l3 = 2 % 5 % 9 % Empty 
+
+-- foldl :: (b -> a -> b) -> b -> List a -> b
+-- foldl _ acc Empty = acc
+-- foldl f acc (Cons h t) = foldl f (f acc h) t
 
 -- sum l3 -> 16
 sum :: List Int -> Int
@@ -36,10 +56,6 @@ sum = foldl (+) 0
 -- product l3 -> 90
 product :: List Int -> Int
 product = foldl (*) 1
-
-foldr :: (a -> b -> b) -> b -> List a -> b
-foldr _ acc Empty = acc
-foldr f acc (Cons h t) = f h (foldr f acc t)
 
 -- length l3 -> 3
 length :: List a -> Int
@@ -82,7 +98,6 @@ repeat n x = prepend x $ repeat (n - 1) x
 concat :: List a -> List a -> List a
 concat listA listB = foldr prepend listB listA
 
---- ??
 concatMap :: (a -> List b) -> List a -> List b
 concatMap f list = foldl (\acc item -> concat acc (f item)) Empty list
 
