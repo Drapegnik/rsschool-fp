@@ -1,10 +1,12 @@
 {-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE InstanceSigs #-}
 
 module List where
 
 import Prelude (Functor(fmap), Foldable(foldr, foldl), Int, Show(show), (+), (*), (++), (-), (==))
 import Data.Semigroup (Semigroup((<>)))
 import Data.Monoid (Monoid(mempty))
+import Control.Applicative (Applicative(pure, (<*>)))
 
 import Base (($), (.), const, flip)
 import Bool (Bool, if')
@@ -24,12 +26,21 @@ instance (Show a) => Show (List a) where
       print (Cons h t) = show h ++ ", " ++ print t
 
 instance Foldable List where
-  -- foldr :: (a -> b -> b) -> b -> List a -> b
+  foldr :: (a -> b -> b) -> b -> List a -> b
   foldr _ acc Empty = acc
   foldr f acc (Cons h t) = f h (foldr f acc t)
 
 instance Functor List where
   fmap = map
+
+-- (+1) % (^2) % (*5) % Empty <*> 2 % 5 % 10 % 11 % Empty
+-- [55, 121, 12, 50, 100, 11, 25, 25, 6, 10, 4, 3]
+instance Applicative List where
+  pure :: a -> List a
+  pure a = Cons a Empty
+
+  (<*>) :: List (a -> b) -> List a -> List b
+  (<*>) lf la = foldl (\acc a -> foldl (\acc' f -> Cons (f a) acc') acc lf) Empty la 
 
 instance Semigroup (List a) where
   (<>) = concat
