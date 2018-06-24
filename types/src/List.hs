@@ -7,6 +7,7 @@ import Prelude (Functor(fmap), Foldable(foldr, foldl), Int, Show(show), (+), (*)
 import Data.Semigroup (Semigroup((<>)))
 import Data.Monoid (Monoid(mempty))
 import Control.Applicative (Applicative(pure, (<*>)))
+import Control.Monad (Monad((>>=)))
 
 import Base (($), (.), const, flip)
 import Bool (Bool, if')
@@ -119,3 +120,8 @@ head (Cons h _) = Just h
 tail :: List a -> Maybe (List a)
 tail Empty = Nothing
 tail (Cons _ t) = Just t
+
+-- tail2 list = tail =<< tail list
+-- tail2 = tail >=> tail
+tail2 :: List a -> Maybe (List a)
+tail2 list = tail list >>= tail
