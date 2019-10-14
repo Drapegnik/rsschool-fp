@@ -31,6 +31,7 @@ data Error
     deriving(Show)
 
 -- User <$> (validateName "") <*> (validateAge 15)
+-- liftA2 User (validateName "sdfdsf") (validateAge 156)
 data User = User
     { name :: String
     , age :: Int

@@ -28,6 +28,7 @@ instance Applicative Maybe where
 
   (<*>) :: Maybe (a -> b) -> Maybe a -> Maybe b
   (<*>) (Just f) (Just a) = Just (f a)
+  -- (<*>) (Just f) a = fmap f a
   (<*>) _         _       = Nothing
 
 instance Monad Maybe where
